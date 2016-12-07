@@ -1,7 +1,7 @@
 const UserModel = require('../models/user');
 const Handlers = {};
 
-Handlers.getAll =  function (request, reply) {
+Handlers.getAll = function (request, reply) {
     UserModel.find({}, function (error, data) {
         if (error) {
             reply({

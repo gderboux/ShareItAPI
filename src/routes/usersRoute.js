@@ -8,6 +8,10 @@ routes.push({
     method: 'GET',
     path: API_BASE_PATH,
     config: {
+        auth: {
+            strategy: 'standard'
+        },
+
         tags: ['api'],
         description: 'Get All User data',
         notes: 'Get All User data',
@@ -92,5 +96,6 @@ routes.push({
     },
     handler: Handlers.handlers.delete
 });
+
 
 module.exports = routes;

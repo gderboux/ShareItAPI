@@ -8,7 +8,8 @@
         "hapi": "^8.5.1",
         "hapi-swagger": "0.7.3",
         "joi": "^6.4.2",
-        "mongoose": "^4.0.3"
+        "mongoose": "^4.0.3",
+        "hapi-auth-cookie": "~2.2.0"
     },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

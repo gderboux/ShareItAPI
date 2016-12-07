@@ -4,13 +4,12 @@ const Fs = require('fs');
 const _ = require('lodash');
 const Pack        = require('./package.json');
 
-
 mongoose.connect('mongodb://localhost/ShareIt');
 
 const server = new Hapi.Server();
 server.connection({port: 8080});
 
-server.register({
+server.register([{
     register: require('hapi-swagger'),
     options: {
         info: {
@@ -18,13 +17,35 @@ server.register({
             description: Pack.description,
             version: Pack.version,
         },
+        securityDefinitions: {
+            jwt: {
+                type: 'apiKey',
+                name: 'Authorization',
+                in: 'header'
+            }
+        },
         documentationPath: '/'
 
     }
-}, function (err) {
+},
+    {
+        register: require('hapi-auth-cookie')
+    }
+], function (err) {
     if (err) {
         throw err;
     }
+
+    server.auth.strategy('standard', 'cookie', {
+        password: 'cookiePassword',
+        cookie: 'app-cookie',
+        isSecure: false,
+        ttl: 24 * 60 * 60 * 1000
+    });
+
+    server.auth.default({
+        strategy: 'base'
+});
 
     // require routes
     Fs.readdirSync('./src/routes').forEach((file) => {
