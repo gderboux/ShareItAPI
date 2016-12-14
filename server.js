@@ -2,7 +2,7 @@ const Hapi = require('hapi');
 const mongoose = require('mongoose');
 const Fs = require('fs');
 const _ = require('lodash');
-const Pack        = require('./package.json');
+const Pack = require('./package.json');
 
 mongoose.connect('mongodb://localhost/ShareIt');
 
