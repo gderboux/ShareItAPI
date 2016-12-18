@@ -3,11 +3,12 @@ const mongoose = require('mongoose');
 const Fs = require('fs');
 const _ = require('lodash');
 const Pack = require('./package.json');
+const config = require("./configuration");
 
-mongoose.connect('mongodb://localhost/ShareIt');
+mongoose.connect('mongodb://' + config.mongodb.host + '/' + config.mongodb.db);
 
 const server = new Hapi.Server();
-server.connection({port: 8080});
+server.connection({port: config.server.port});
 
 server.register([{
     register: require('hapi-swagger'),
@@ -25,7 +26,6 @@ server.register([{
             }
         },
         documentationPath: '/'
-
     }
 },
     {
@@ -37,10 +37,10 @@ server.register([{
     }
 
     server.auth.strategy('standard', 'cookie', {
-        password: 'cookiePassword',
+        password: config.auth.secret,
         cookie: 'app-cookie',
         isSecure: false,
-        ttl: 24 * 60 * 60 * 1000
+        ttl: config.auth.ttl
     });
 
     server.auth.default({

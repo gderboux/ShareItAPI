@@ -20,4 +20,4 @@ Requires :
   npm install                                               #install dependencies
   npm start                                                 # start server
 ```
-Once your server is running locally, visit [http://localhost:8080](http://localhost:8080) to check out the swagger docs.
+Once your server is running locally, visit [http://localhost:3000](http://localhost:3000) to check out the swagger docs.
