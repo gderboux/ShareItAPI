@@ -7,7 +7,7 @@
         "good-console": "^5.0.0",
         "hapi": "^8.5.1",
         "hapi-swagger": "0.7.3",
-        "joi": "^6.4.2",
+        "joi": "^10.0.6",
         "mongoose": "^4.0.3",
         "hapi-auth-cookie": "~2.2.0"
     },

@@ -1,21 +1,11 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const Joi = require('joi');
 
-const AddressSchema = new Schema({
-    street: {
-        type: String,
-        required: true
-    },
-    streetNumber: {
-        type: Number,
-        required: true
-    },
-    PostalCode: {
-        type: String,
-        required: true
-    },
-    Country: {
-        type: String,
-        required: true
-    }
+var joiAddressSchema = Joi.object().keys({
+    street: Joi.string().required(),
+    streetNumber: Joi.string().required(),
+    postalCode: Joi.string().required(),
+    country: Joi.string().required()
 });
+
+
+module.exports = joiAddressSchema;

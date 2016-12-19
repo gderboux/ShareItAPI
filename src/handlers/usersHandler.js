@@ -1,4 +1,4 @@
-const UserModel = require('../models/user');
+const UserModel = require('../models/user').mongooseUserModel;
 const Handlers = {};
 
 Handlers.getAll = function (request, reply) {

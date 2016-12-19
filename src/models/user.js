@@ -1,53 +1,29 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const AddressSchema = require('./address');
-const CarSchema = require('./car');
+const Joi = require('joi');
+var Joigoose = require('joigoose')(mongoose);
+const joiAddressSchema = require('./address');
+const joiCarSchema = require('./car');
 
-const UserSchema = new Schema({
-    firstName: {
-        type: String,
-        required: [true, 'User firstName required']
-    },
-    lastName: {
-        type: String,
-        required: [true, 'User lastName required']
-    },
-    pseudo: {
-        type: String,
-        required: [true, 'User pseudo required']
-    },
-    email: {
-        type: String,
-        required: [true, 'User email required']
-    },
-    password: {
-        type: String,
-        required: [true, 'User password required']
-    },
-    phoneNumber: {
-        type: String,
-        required: [true, 'User phone number required']
-    },
-    gender: {
-        type: String,
-        enum: ['Homme', 'Femme'],
-        required: [true, 'User gender required']
-    },
-    birthDate: {
-        type: Date,
-        required: [true, 'User birthDate required']
-    },
-    address: {
-        type: AddressSchema,
-        required: [true, 'User address required']
-    },
-    car: {
-        type: CarSchema
-    },
-    isDriver: {
-        type: Boolean,
-        required: [true, "User isDriver require"]
-    }
+var joiUserSchema = Joi.object().keys({
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required(),
+    pseudo: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().required(),
+    phoneNumber: Joi.string().required(),
+    gender: Joi.string().allow('HOMME', 'FEMME').required(),
+    birthDate: Joi.date().required(),
+    isDriver: Joi.boolean().required(),
+    car: joiCarSchema,
+    address: joiAddressSchema.required()
 });
 
-module.exports = mongoose.model('User', UserSchema);
+
+
+var mongooseUserSchema = Joigoose.convert(joiUserSchema);
+var User = mongoose.model('User', mongooseUserSchema);
+
+module.exports = {
+    joiUserSchema: joiUserSchema,
+    mongooseUserModel: User
+};
