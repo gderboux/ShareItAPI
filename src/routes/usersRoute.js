@@ -4,20 +4,26 @@ const Handlers  = require('../handlers/usersHandler');
 const Joi = require('joi');
 const routes = [];
 
+
+var userSchema = {
+    name: Joi.string(),
+    surname: Joi.string(),
+    email: Joi.string().email(),
+    password: Joi.string(),
+    phoneNumber: Joi.string(),
+    gender: Joi.string(),
+    age: Joi.number()
+};
+
 routes.push({
     method: 'GET',
     path: API_BASE_PATH,
     config: {
-        auth: {
-            strategy: 'standard'
-        },
-
         tags: ['api'],
         description: 'Get All User data',
         notes: 'Get All User data',
     },
     handler: Handlers.handlers.getAll
-
 });
 
 routes.push({
@@ -47,14 +53,7 @@ routes.push({
             params: {
                 id: Joi.string().required()
             },
-            payload: {
-                name: Joi.string(),
-                surname: Joi.string(),
-                email: Joi.string(),
-                phoneNumber: Joi.string(),
-                gender: Joi.string(),
-                age: Joi.number()
-            }
+            payload: userSchema
         }
     },
     handler: Handlers.handlers.put
@@ -68,14 +67,7 @@ routes.push({
         description: 'Save user data',
         notes: 'Save user data',
         validate: {
-            payload: {
-                name: Joi.string(),
-                surname: Joi.string(),
-                email: Joi.string(),
-                phoneNumber: Joi.string(),
-                gender: Joi.string(),
-                age: Joi.number()
-            }
+            payload: userSchema
         }
     },
     handler: Handlers.handlers.post

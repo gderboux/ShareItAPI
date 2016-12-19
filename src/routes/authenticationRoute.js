@@ -13,7 +13,7 @@ routes.push({
         auth: false,
         validate: {
             payload: {
-                email: Joi.string().required(),//Joi.string().email().required(),
+                email: Joi.string().email().required(),//Joi.string().email().required(),
                 password: Joi.string().min(2).max(200).required()
             }
         }

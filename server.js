@@ -44,7 +44,7 @@ server.register([{
     });
 
     server.auth.default({
-        strategy: 'base'
+        strategy: 'standard'
 });
 
     // require routes
