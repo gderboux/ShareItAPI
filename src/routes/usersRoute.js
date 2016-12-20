@@ -3,7 +3,7 @@ const API_BASE_PATH = '/users';
 const Handlers  = require('../handlers/usersHandler');
 const Joi = require('joi');
 const routes = [];
-var joiUserSchema = require('../models/user').joiUserSchema;
+var joiUserSchema = require('../models/user').joiSchema;
 
 routes.push({
     method: 'GET',
@@ -57,7 +57,7 @@ routes.push({
         description: 'Save user data',
         notes: 'Save user data',
         validate: {
-            payload: joiUserSchema.without('car', ['firstName'])
+            payload: joiUserSchema
         }
     },
     handler: Handlers.handlers.post

@@ -1,8 +1,9 @@
-const UserModel = require('../models/user');
+const UserModel = require('../models/user').mongooseModel;
 const Handlers = {};
 
 Handlers.login = function (request, reply) {
-    UserModel.find({email: request.email, password: request.password}, function (error, data) {
+    UserModel.find({email: request.payload.email, password: request.payload.password}, function (error, data) {
+
         if (error) {
             return reply({
                 statusCode: 503,
@@ -11,7 +12,6 @@ Handlers.login = function (request, reply) {
             });
         }
         if (data.length === 0) {
-            log("test");
             return reply({
                 statusCode: 200,
                 message: 'User Not Found',

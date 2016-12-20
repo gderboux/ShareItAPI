@@ -18,12 +18,10 @@ var joiUserSchema = Joi.object().keys({
     address: joiAddressSchema.required()
 });
 
-
-
 var mongooseUserSchema = Joigoose.convert(joiUserSchema);
-var User = mongoose.model('User', mongooseUserSchema);
+var User = mongoose.model('Users', mongooseUserSchema);
 
 module.exports = {
-    joiUserSchema: joiUserSchema,
-    mongooseUserModel: User
+    joiSchema: joiUserSchema,
+    mongooseModel: User,
 };

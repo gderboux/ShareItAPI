@@ -1,4 +1,4 @@
-const UserModel = require('../models/user').mongooseUserModel;
+const UserModel = require('../models/user').mongooseModel;
 const Handlers = {};
 
 Handlers.getAll = function (request, reply) {
@@ -19,7 +19,7 @@ Handlers.getAll = function (request, reply) {
 };
 
 Handlers.getOne = function (request, reply) {
-    UserModel.find({_id: request.params.id}, function (error, data) {
+    UserModel.findOne({_id: request.params.id}, function (error, data) {
         if (error) {
             return reply({
                 statusCode: 503,

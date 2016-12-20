@@ -7,5 +7,4 @@ var joiAddressSchema = Joi.object().keys({
     country: Joi.string().required()
 });
 
-
 module.exports = joiAddressSchema;

@@ -1,0 +1,43 @@
+[
+  {
+    "firstName": "Admin Firstname",
+    "lastName": "Admin LastName",
+    "pseudo": "Admin",
+    "email": "admin@gmail.com",
+    "password": "1Aaaaaaa",
+    "phoneNumber": "0123456789",
+    "gender": "HOMME",
+    "birthDate": "01/01/2016",
+    "isDriver": false,
+    "address": {
+      "street": "boulevard de l'hopital",
+      "streetNumber": "32",
+      "postalCode": "75005",
+      "country": "FRANCE"
+    }
+  },
+  {
+    "firstName": "Guillaume",
+    "lastName": "Derboux",
+    "pseudo": "Lifeinzik",
+    "email": "guillaume.derboux@gmail.com",
+    "password": "1Aaaaaaa",
+    "phoneNumber": "0123456789",
+    "gender": "HOMME",
+    "birthDate": "07/09/1994",
+    "isDriver": true,
+    "car": {
+      "vin": "V7HN85",
+      "description": "Vehicule R5 bien entretenus de 2007",
+      "SeatNumber": 5,
+      "color": "ROUGE",
+      "brand": "RENAULT"
+    },
+    "address": {
+      "street": "boulevard de l'hopital",
+      "streetNumber": "32",
+      "postalCode": "75005",
+      "country": "FRANCE"
+    }
+  }
+]

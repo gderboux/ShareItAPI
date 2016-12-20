@@ -9,7 +9,9 @@
         "hapi-swagger": "0.7.3",
         "joi": "^10.0.6",
         "mongoose": "^4.0.3",
-        "hapi-auth-cookie": "~2.2.0"
+        "hapi-auth-cookie": "~2.2.0",
+        "joigoose": "1.5.7"
+
     },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

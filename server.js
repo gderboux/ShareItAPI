@@ -5,7 +5,35 @@ const _ = require('lodash');
 const Pack = require('./package.json');
 const config = require("./configuration");
 
-mongoose.connect('mongodb://' + config.mongodb.host + '/' + config.mongodb.db);
+
+const mongoUrl = 'mongodb://' + config.mongodb.host + '/' + config.mongodb.db;
+mongoose.connect(mongoUrl, function(err) {
+    if(err) {
+        return console.log(err);
+    }
+    console.log('Mongodb : Connected to ' + mongoUrl);
+
+    Fs.readdirSync('./DevData').forEach((file) => {
+        file = file.substring(0, file.indexOf('.'));
+        console.log('Mongodb: initialisation des data ' + file);
+        var mongooseModel = mongoose.model(file);
+        mongooseModel.remove(function(err) {
+            if (err) {
+                console.log(err);
+            }
+        });
+         var data = require('./DevData/' + file + ".json");
+         for (var i = 0; i < data.length; i++) {
+         new mongooseModel(data[i]).save(function(err) {
+             if (err) {
+                 console.log(err);
+             }
+            });
+         }
+    });
+    console.log('Mongodb : Data initialized')
+});
+
 
 const server = new Hapi.Server();
 server.connection({port: config.server.port});
@@ -43,15 +71,14 @@ server.register([{
         ttl: config.auth.ttl
     });
 
-    server.auth.default({
+    /*server.auth.default({
         strategy: 'standard'
-});
+    });*/
 
     // require routes
     Fs.readdirSync('./src/routes').forEach((file) => {
 
         _.each(require('./src/routes/' + file), (routes) => {
-
             server.route(routes);
         });
     });
@@ -65,3 +92,4 @@ server.register([{
         console.log('Server running at:', server.info.uri);
     });
 });
+
