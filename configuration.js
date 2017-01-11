@@ -12,3 +12,5 @@ module.exports = {
         ttl: 24 * 60 * 60 * 1000
     }
 };
+
+// AIzaSyBm0nssWB8dQ84HZicYuBw_HCxONuG8F6A  GOOGLE API KEY
