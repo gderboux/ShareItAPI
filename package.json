@@ -3,16 +3,16 @@
   "version": "0.0.1",
   "description": "This is Share it API",
   "main": "server.js",
-"dependencies": {
-        "good-console": "^5.0.0",
-        "hapi": "^8.5.1",
-        "hapi-swagger": "0.7.3",
-        "joi": "^10.0.6",
-        "mongoose": "^4.0.3",
-        "hapi-auth-cookie": "~2.2.0",
-        "joigoose": "1.5.7"
-
-    },
+  "dependencies": {
+    "good-console": "^5.0.0",
+    "hapi": "^8.5.1",
+    "hapi-auth-cookie": "~2.2.0",
+    "hapi-swagger": "0.7.3",
+    "joi": "^10.0.6",
+    "joigoose": "1.5.7",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.0.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

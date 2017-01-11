@@ -1,5 +1,5 @@
 const API_BASE_PATH = '/authentication';
-const Handlers  = require('../handlers/authenticationHandler');
+const Handlers = require('../handlers/authenticationHandler');
 const Joi = require('joi');
 const routes = [];
 

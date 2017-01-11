@@ -1,6 +1,5 @@
-
 const API_BASE_PATH = '/users';
-const Handlers  = require('../handlers/usersHandler');
+const Handlers = require('../handlers/usersHandler');
 const Joi = require('joi');
 const routes = [];
 var joiUserSchema = require('../models/user').joiSchema;
