@@ -1,5 +1,7 @@
 const API_BASE_PATH = '/users';
-const Handlers = require('../handlers/usersHandler');
+const userHandlers = require('../handlers/usersHandler');
+const bookingHandlers = require('../handlers/bookingsHandler');
+
 const Joi = require('joi');
 const routes = [];
 var joiUserSchema = require('../models/user').joiSchema;
@@ -12,7 +14,7 @@ routes.push({
         description: 'Get All User data',
         notes: 'Get All User data',
     },
-    handler: Handlers.handlers.getAll
+    handler: userHandlers.handlers.getAll
 });
 
 routes.push({
@@ -28,7 +30,7 @@ routes.push({
             }
         }
     },
-    handler: Handlers.handlers.getOne
+    handler: userHandlers.handlers.getOne
 });
 
 routes.push({
@@ -45,7 +47,7 @@ routes.push({
             payload: joiUserSchema.required()
         }
     },
-    handler: Handlers.handlers.put
+    handler: userHandlers.handlers.put
 });
 
 routes.push({
@@ -59,7 +61,7 @@ routes.push({
             payload: joiUserSchema
         }
     },
-    handler: Handlers.handlers.post
+    handler: userHandlers.handlers.post
 });
 
 routes.push({
@@ -75,7 +77,23 @@ routes.push({
             }
         }
     },
-    handler: Handlers.handlers.delete
+    handler: userHandlers.handlers.delete
+});
+
+routes.push({
+    method: 'GET',
+    path: API_BASE_PATH + '/{id}/bookings',
+    config: {
+        tags: ['api'],
+        description: 'get All booking for a specific User',
+        notes: 'get All booking for a specific User',
+        validate: {
+            params: {
+                id: Joi.string().required()
+            }
+        }
+    },
+    handler: bookingHandlers.handlers.getAllBookingForSpecificUser
 });
 
 

@@ -15,14 +15,14 @@ mongoose.connect(mongoUrl, function(err) {
     Fs.readdirSync('./DevData').forEach((file) => {
         file = file.substring(0, file.indexOf('.'));
         console.log('Mongodb: initialisation des data ' + file);
-        let mongooseModel = mongoose.model(file);
+        var mongooseModel = mongoose.model(file);
         mongooseModel.remove(function(err) {
             if (err) {
                 console.log(err);
             }
         });
-         let data = require('./DevData/' + file + ".json");
-         for (let i = 0; i < data.length; i++) {
+         var data = require('./DevData/' + file + ".json");
+         for (var i = 0; i < data.length; i++) {
          new mongooseModel(data[i]).save( (err) => {
              if (err) {
                  console.log(err);
@@ -90,5 +90,10 @@ server.register([{
 
         console.log('Server running at:', server.info.uri);
     });
+});
+
+//LOG REQUEST
+server.on('response', function (request) {
+    console.log(request.info.remoteAddress + ': ' + request.method.toUpperCase() + ' ' + request.url.path + ' --> ' + request.response.statusCode);
 });
 

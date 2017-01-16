@@ -1,0 +1,43 @@
+[
+  {
+    "_id": "587f49b602f7de482d06c8c1",
+    "driverId": "587f2a7f6a2f05408c92be1f",
+    "passengersRoute": [
+      {
+        "passengerId": "587f2a7f6a2f05408c92be1e",
+        "origin": {
+          "street": "32",
+          "streetNumber": "boulevard de l'hopital",
+          "postalCode": "75005",
+          "country": "FRANCE"
+        },
+        "destination": {
+          "street": "30",
+          "streetNumber": "Avenue de la république",
+          "postalCode": "94800",
+          "country": "FRANCE"
+        },
+        "originDate": "2010-04-22T06:00:00Z",
+        "destinationDate": "2012-04-22T06:00:00Z",
+        "cost": 10,
+        "kilometer": 10
+      }
+    ],
+    "origin": {
+      "street": "50",
+      "streetNumber": "Boulevard de l'hopital",
+      "postalCode": "75005",
+      "country": "FRANCE"
+    },
+    "destination": {
+      "street": "30",
+      "streetNumber": "Avenue de la république",
+      "postalCode": "94800",
+      "country": "FRANCE"
+    },
+    "originDate": "2011-04-22T06:00:00Z",
+    "destinationDate": "2013-04-22T06:00:00Z",
+    "duration": 20,
+    "cost": 20
+  }
+]
