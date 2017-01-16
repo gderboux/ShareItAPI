@@ -4,9 +4,8 @@ const Fs = require('fs');
 const _ = require('lodash');
 const Pack = require('./package.json');
 const config = require("./configuration");
-
-
 const mongoUrl = 'mongodb://' + config.mongodb.host + '/' + config.mongodb.db;
+
 mongoose.connect(mongoUrl, function(err) {
     if(err) {
         return console.log(err);
@@ -16,15 +15,15 @@ mongoose.connect(mongoUrl, function(err) {
     Fs.readdirSync('./DevData').forEach((file) => {
         file = file.substring(0, file.indexOf('.'));
         console.log('Mongodb: initialisation des data ' + file);
-        var mongooseModel = mongoose.model(file);
+        let mongooseModel = mongoose.model(file);
         mongooseModel.remove(function(err) {
             if (err) {
                 console.log(err);
             }
         });
-         var data = require('./DevData/' + file + ".json");
-         for (var i = 0; i < data.length; i++) {
-         new mongooseModel(data[i]).save(function(err) {
+         let data = require('./DevData/' + file + ".json");
+         for (let i = 0; i < data.length; i++) {
+         new mongooseModel(data[i]).save( (err) => {
              if (err) {
                  console.log(err);
              }
